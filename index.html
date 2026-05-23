@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Ahmedabad</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f6f9;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: orange;
+        }
+
+        /* HERO SECTION WITH IMG */
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .hero-content button {
+            margin-top: 25px;
+            padding: 14px 30px;
+            border: none;
+            background: orange;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+        }
+
+        /* CARDS */
+
+        .places {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: orange;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: #555;
+        }
+
+        /* ABOUT */
+
+        .about {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CONTACT */
+
+        .contact-form {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 14px;
+            background: orange;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111;
+            color: white;
+            padding: 50px 8%;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-box h3 {
+            color: orange;
+            margin-bottom: 15px;
+        }
+
+        .footer-box a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .footer-box a:hover {
+            color: orange;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            color: #aaa;
+        }
+
+        /* TOP BUTTON */
+
+        #topBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: orange;
+            color: white;
+            border: none;
+            display: none;
+            cursor: pointer;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo">Ahmedabad</div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#places">Places</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO WITH IMAGE BACKGROUND (IMG TAG) -->
+
+    <header class="hero">
+
+        <!-- YOUR BACKGROUND IMAGE -->
+        <a href="https://ibb.co/v62046zx"><img src="https://i.ibb.co/hJp3FJ8R/ahmedabad-ho7g03dxouzh0ulo.jpg"
+                alt="ahmedabad-ho7g03dxouzh0ulo" border="0"></a>
+
+        <div class="hero-content">
+            <h1>Explore Ahmedabad</h1>
+            <p>
+                Discover heritage, food, culture and iconic places of Ahmedabad.
+            </p>
+
+            <button onclick="document.getElementById('places').scrollIntoView({behavior:'smooth'})">
+                Explore Places
+            </button>
+        </div>
+
+    </header>
+
+    <!-- PLACES -->
+
+    <section id="places">
+
+        <div class="section-title">
+            <h2>Top Places</h2>
+        </div>
+
+        <div class="places">
+
+            <div class="card">
+                <a href="https://imgbb.com/"><img
+                        src="https://i.ibb.co/rKL0YkJX/360-F-552275461-Qd-Eaat-YXQ1-KGb-Ae08-Xnh2bo8gp9-Pmq5a.jpg"
+                        alt="360 F 552275461 Qd Eaat YXQ1KGb Ae08Xnh2bo8gp9Pmq5a" border="0"></a>
+                <div class="card-content">
+                    <h3>Sabarmati Riverfront</h3>
+                    <p>Beautiful riverside view and walking area.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="https://imgbb.com/"><img
+                        src="https://i.ibb.co/ks4C1Zqy/360-F-835848507-tm-Xn-OMb-MB6d1pdb23-TLw-Vi-Vu-Uj6l-Usol.jpg"
+                        alt="360 F 835848507 tm Xn OMb MB6d1pdb23TLw Vi Vu Uj6l Usol" border="0"></a>
+                <div class="card-content">
+                    <h3>Adalaj Stepwell</h3>
+                    <p>Historic stepwell with amazing carvings.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="https://imgbb.com/"><img src="https://i.ibb.co/HfBsmvSd/634955805168800451-28.jpg"
+                        alt="634955805168800451 28" border="0"></a>
+                <div class="card-content">
+                    <h3>Kankaria Lake</h3>
+                    <p>Famous lake with rides and food stalls.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="about">
+            <h2>About Ahmedabad</h2>
+            <p>
+                Ahmedabad is a UNESCO World Heritage City known for culture, food and history.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="contact-form">
+
+            <h2>Contact Us</h2>
+
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <textarea rows="5" placeholder="Message"></textarea>
+
+            <button>Send Message</button>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-box">
+                <h3>About Ahmedabad</h3>
+                <p>Heritage city of India with culture and food.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Navigation</h3>
+                <a href="#">Home</a>
+                <a href="#places">Places</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-box">
+                <h3>Contact</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91 00000 00000</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Explore Ahmedabad
+        </div>
+
+    </footer>
+
+    <!-- TOP BUTTON -->
+
+    <button id="topBtn">↑</button>
+
+    <script>
+        const btn = document.getElementById("topBtn");
+
+        window.onscroll = () => {
+            btn.style.display = document.documentElement.scrollTop > 200 ? "block" : "none";
+        };
+
+        btn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+    </script>
+
+</body>
+
+</html>
